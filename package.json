@@ -1,4 +1,12 @@
 {
   "name": "backend-party-drawing",
-  "packageManager": "yarn@4.2.2"
+  "packageManager": "yarn@4.2.2",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "socket.io": "^4.7.5"
+  }
 }
