@@ -1,22 +1,19 @@
-import { Server } from "socket.io";
+import { getWebSocketServer } from "./websocket.js";
 
 export default function websocketServerBootstrap() {
   try {
-    const io = new Server({
-      cors: {
-        origin: "*",
-      },
-    });
+    const websocket = getWebSocketServer();
 
-    io.listen(3000, () => {
+    websocket.listen(3000, () => {
       console.log("server running at http://localhost:3000");
     });
 
-    io.on("connection", (socket) => {
-      console.log("a user connected");
+    websocket.on("connection", (socket) => {
+      console.log(socket.rooms);
     });
+
+    console.log("🚀 Bootstrap");
   } catch (error) {
-    console.error(`fudeu`);
     process.exit(1);
   }
 }
