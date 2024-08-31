@@ -1,18 +1,16 @@
 import { getWebSocketServer } from "./websocket.js";
+import handlers from "./handlers/index.js";
 
 export default function websocketServerBootstrap() {
   try {
+    console.log("🚀 WebSocket Server Bootstrap");
     const websocket = getWebSocketServer();
-
-    websocket.listen(3000, () => {
-      console.log("server running at http://localhost:3000");
-    });
+    const { joinRoomHandler } = handlers(websocket);
+    websocket.listen(3000);
 
     websocket.on("connection", (socket) => {
-      console.log(socket.rooms);
+      socket.on("joinRoom", joinRoomHandler);
     });
-
-    console.log("🚀 Bootstrap");
   } catch (error) {
     process.exit(1);
   }
