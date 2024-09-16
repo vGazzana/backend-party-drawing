@@ -3,11 +3,15 @@
   "packageManager": "yarn@4.2.2",
   "type": "module",
   "scripts": {
-    "dev": "node --watch index.js",
+    "dev": "node --env-file=.env --watch index.js",
     "start": "node index.js"
   },
   "dependencies": {
+    "@prisma/client": "5.19.1",
     "fastify": "^4.28.1",
     "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "prisma": "^5.19.1"
   }
 }
