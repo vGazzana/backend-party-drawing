@@ -1,6 +1,7 @@
 # backend-party-drawing
 
 This project is based on Gartic, it utilizes [node.js](https://nodejs.org/en) with [socket.io](https://socket.io/)
+To see the front-end [click here](https://github.com/vGazzana/front-party-drawing)
 
 ## Table of Contents
 
