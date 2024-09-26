@@ -1,4 +1,5 @@
 import prisma from "../databases/prisma.js";
+import { hashPassword } from "../utils/crypto.js";
 
 export default async function AuthenticationRoutes(fastify) {
   fastify.post("/register", async (request, reply) => {
@@ -23,13 +24,23 @@ export default async function AuthenticationRoutes(fastify) {
         data: {
           email,
           name,
-          password,
+          password: hashPassword(password),
         },
       });
 
+      if (!insertedUser) {
+        throw new Error("An error has occurred, please try again");
+      }
+
       return {
         status: "success",
-        data: null,
+        data: {
+          user: {
+            id: insertedUser.id,
+            name: insertedUser.name,
+            email: insertedUser.email,
+          },
+        },
       };
     } catch (error) {
       return {
